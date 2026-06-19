@@ -1,28 +1,271 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OM`s FOODHub</title>
+  <meta name="description" content="OM's FOODHub: affordable home-styled meals and catering in Polokwane (Limpopo) and Gauteng. Traditional South African food, modern dishes, beverages & desserts." />
+  <meta name="keywords" content="OM's FOODHub, food delivery Polokwane, catering Polokwane, homemade meals Polokwane, affordable meals Polokwane, breakfast and lunch Polokwane, dinner Polokwane, office catering Polokwane, wedding catering Polokwane, birthday catering Polokwane, bulk catering Polokwane, Limpopo catering, Gauteng catering, South African traditional food, modern South African food, catering Limpopo, catering Gauteng" />
+
+  <meta name="author" content="OM's FOODHub" />
+  <meta property="og:title" content="OM's FOODHub" />
+  <meta property="og:description" content="Affordable home-styled meals and catering in Polokwane (Limpopo) and Gauteng." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_ZA" />
+
+  <link rel="stylesheet" href="styles.css">
+
+
+  <style>
+    :root{ --panel: rgba(255,247,240,0.92); }
+
+    body{
+      margin: 0;
+      padding: 0 12px 0 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: #111;
+      background: #fff7f0;
+      overflow: auto;
+    }
+
+    /* prevent the background overlay from covering/raising content */
+    .section-inner{
+      z-index: 1;
+    }
+
+
+    /* sticky navigation */
+
+    .nav{
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 999;
+      margin: 0;
+      width: 220px;
+      height: 100vh;
+      background: var(--panel);
+      border-radius: 0;
+      box-shadow: -10px 0 25px rgba(0,0,0,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav a{
+      display: inline-block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .nav a:hover{ background: rgba(0,0,0,0.06); }
+
+    /* Full-width background “panels” under the nav */
+    .section-bg{
+      min-height: 100vh;
+      padding: 18px 0 30px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .section-bg::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(255,247,240,0.75);
+      pointer-events:none;
+    }
+
+    .section-inner{
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+/* HOME/ABOUT/CONTACTS use background 2 */
+#home, #about, #contacts{ background-image: url('background 2.jpg'); }
+
+    /* SERVICES/FOOD use background 1 */
+#services{ background-image: url('background 1.jpg'); }
+
+
+    /* Make images consistent */
+    img{
+      display:block;
+      width: 420px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin: 18px auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+
+    /* Hero image can be different size */
+    img[alt="Image"]{ width: 520px; height: 320px; }
+
+    /* headings readability */
+    h1,h2,h4,p{ margin: 0; }
+
+    /* different fonts + nice colors for sub-headings */
+    .brand-title{
+      font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;
+      color: #ff6b6b;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      font-size: 2rem;
+      margin-top: 14px;
+      margin-bottom: 12px;
+    }
+
+    .subhead{
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+
+    /* specific subheading colors */
+    .contact-subhead{
+      color: #2f80ed;
+    }
+
+    /* Mission/Vision headings */
+    #missionContent h2{
+      font-family: 'Courier New', Courier, monospace;
+      color: #00a676;
+    }
+
+    /* Apply same style to Vision heading */
+    #about h2{
+      font-family: 'Courier New', Courier, monospace;
+      color: #00a676;
+      font-size: 1.5rem;
+    }
+
+
+    /* Services heading inside the services section */
+    #services h1, #services h2{
+      font-family: 'Verdana', Arial, sans-serif;
+      color: #9b51e0;
+    }
+
+
+
+    /* Home last sentences */
+    .home-final-sentences{
+      text-align: center;
+      margin: 14px auto 8px;
+    }
+
+    /* Started-at sentence spacing */
+    .home-started{
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+
+
+
+
+
+    .home-name{
+      font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;
+      font-style: italic;
+      color: #b00020; /* deep red */
+      font-weight: 900;
+      margin: 0;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.18);
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+
+
+    .home-cta{
+      font-family: 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
+      font-style: italic;
+      color: #00d084; /* brighter */
+      font-weight: 900;
+      font-size: 1.55rem; /* bigger */
+      margin: 8px 0 0;
+      letter-spacing: 0.3px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    }
+
+    .contact-link{
+      color: #1a73e8;
+      text-decoration: underline;
+      font-weight: 800;
+    }
+
+    .contact-link:hover{
+      color: #0b57d0;
+    }
+
+    /* Blue links/values in contacts section (only words after labels) */
+    #contacts .contact-value{
+      color: #1a73e8;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
+    #contacts .maps-link{
+      color: #1a73e8;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
+
+
+
+  </style>
 </head>
 <body>
-  
 
-
-
+  <div class="nav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contacts">Contacts</a>
   </div>
-<h1><b>OM`s FOODHub</b></h1>
-<img src="ChatGPT Image Apr 16, 2026, 01_38_17 PM (2).png" alt="Image">
+
+  <div id="home" class="section-bg"><div class="section-inner">
+
+<h1 style="text-align:center;"><b>OM`s FOODHub</b></h1>
+
+
+
+
+<img width="500" height="300" src="ChatGPT Image Apr 16, 2026, 01_38_17 PM.png" alt="OM's FOODHub logo">
+
 
 <p>OM`s FOODHub is a local food service brand based in Limpopo and Gauteng ,founded to bring affordadle , home styled meals and catering to communities and also events. Starting as a small kitchen operation serving regular clients, it has grown through word-of-mouth int a trusted name for quality food, fast service, and reliable event catering</p>
 
-<p>Started at Polokwane in Limpopo and now available in 2 provinces and looks to expand from
+<div class="home-final-sentences">
+  <p class="home-name">OM`s FOODHub</p>
+  <p class="home-cta">NEED FOOD??..WE GOT YOUU!!!</p>
+</div>
+
+<p class="home-started">Started at Polokwane in Limpopo and now available in 2 provinces and looks to expand from
 2 provinces to the whole country and from the country to the continent.
 </p>
-<p>OM`s FOODHub</p>
-<P>NEED FOOD??..WE GOT YOUU!!!</P>
 
 
+
+  </div></div>
+
+  <div id="about" class="section-bg"><div class="section-inner">
 <H1>ABOUT US</H1>
 
 
@@ -36,6 +279,7 @@
 </div>
 
 
+
 <h2><b>VISION</b></h2>
 <ul>
 <li>To become the most loved community food brand in the country</li>
@@ -43,63 +287,59 @@
 </ul>
 </div>
 
-<script>
 
 
-</script>
+  </div></div>
 
-<P><H1>SERVICES</H1>
-
-We at the Hub we serve various kind of food from vintage south african food to morden food with affordable prices.
-
-
- 
-<li></li> 
-</P>
+<div id="services" class="section-bg"><div class="section-inner">
+    <h1>SERVICES</h1>
+<p>At OM’s FOODHub, we serve a wide variety of meals—from classic South African favourites to modern dishes—always at affordable prices.</p>
 
 
+    <!-- service/food pictures -->
+    <img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (2).png" alt="Traditional food">
+<p>This is our spread for authentic South African Traditional Food. We bring you local “lekerr” vibes with flavour you’ll love—at prices you can afford.</p>
+
+    <img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (3).png" alt="Modern food">
+<p>And yes— we also serve delicious modern favourites made fresh for you.</p>
 
 
-</body>
-FUNFACT : we also offer 15% off to the first 10 customers of the day!!!!
+<p>We also offer beverages—from kiddies drinks and fizzy favourites to alcoholic options.</p>
 
-<img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (2).png" alt="">
+    <img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (5).png" alt="Desserts">
+<p>Got a sweet tooth? We’ve got you covered. Enjoy our dazzling desserts—trust The Hub, you’ll love every bite.</p>
 
-<p>This is our set for the South African Tradional Food. We try to give 
-  our customers some local is lekerr vibes with prices that are affordable
-</p>
-
-<li>
-
-<img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (3).png" alt="">
-
-<p>And we also serve some great morden food</p>
-<li>OM`s FOODHub also tries to be diverse and accomodate everyone</li>
-
-</li>
-
-<img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (4).png" alt="">
-
-  <p>WE also offer beverages ,from kiddies drinks to fizzies and also alcohol</p>
+  </div></div>
 
 
-  <img src="ChatGPT Image Apr 19, 2026, 04_43_48 PM (5).png" alt="">
 
-  <p>And if you have a sweet tooth we also got you!!! we have dazzling desserts that we go a long way and trust The Hub you will enjoy.</p>
 
-</P>
 
-<h4> CONTACTS</h4>
 
-<H1>OM`s FOODHub</H1>
+
+  <div id="contacts" class="section-bg"><div class="section-inner">
+<h4 class="subhead contact-subhead"> CONTACTS</h4>
+
+<h1 class="brand-title">OM`s FOODHub</h1>
+
 
 <li><h2>Trading Hours</h2></li>
 <li>MONDAY-SARTURDAY, 08H00 AM-02HOO AM</li>
 
 <Li><H4>LET`S GET IN TOUCH</H4></Li>
-<Li>PHONE/WHATSAPP : 0711827138</Li>
-<li>EMAIL          : foodhuboders@gmail.com</li>
 
+
+<li>
+  <h2 style="display:inline;">PHONE/WHATSAPP : </h2>
+  <a class="contact-link" href="tel:0711827138" data-copy="phone" data-value="0711827138">0711827138</a>
+  <button type="button" data-copy="phone" data-value="0711827138" aria-label="Copy phone number" style="margin-left:10px; padding:6px 10px; border-radius:10px; border:1px solid rgba(0,0,0,0.15); background:#fff; cursor:pointer; font-weight:800;">Copy</button>
+</li>
+
+<li>
+  <h2 style="display:inline;">EMAIL : </h2>
+  <a class="contact-link" href="mailto:foodhuboders@gmail.com" data-copy="email" data-value="foodhuboders@gmail.com">foodhuboders@gmail.com</a>
+  <button type="button" data-copy="email" data-value="foodhuboders@gmail.com" aria-label="Copy email" style="margin-left:10px; padding:6px 10px; border-radius:10px; border:1px solid rgba(0,0,0,0.15); background:#fff; cursor:pointer; font-weight:800;">Copy</button>
+</li>
 
 
 <li>LOCATION: SHOP 18 ,[ GROBLER STREET], POLOKWANE</li>
@@ -110,15 +350,79 @@ FUNFACT : we also offer 15% off to the first 10 customers of the day!!!!
 <li><h4>WhatsApp Orders : 0823512138</h4></li>
 <li><h4>Bulk/Catering Equiries:</h4></li>
 <li><link rel="stylesheet" href="bulk@foodhub.co.za"></li>
-<li> FACEBOOK : FOODHub ALOT</li>
-<li> INSTAGRAM : FOODHub ALOT 2.0</li>
-<Li> MAP       : https://maps.gonow.com  </Li>
+<li> FACEBOOK : <a class="contact-link" href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook page"><span class="contact-value">FOODHub ALOT</span></a></li>
+
+<li> INSTAGRAM : <a class="contact-link" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram profile"><span class="contact-value">FOODHub ALOT 2.0</span></a></li>
 
 
 
-<li><h6>ALLOWED PAYMENT METHODS</h6></li>
-<li>cash | card | instant eft | snapscan | yoco</li>
+
+<Li> MAP       : <span class="contact-value">https://maps.gonow.com</span>  </Li>
+
+<li style="margin-top:24px;"><h6>ALLOWED PAYMENT METHODS</h6></li>
+<li><span class="contact-value">cash | card | instant eft | snapscan | yoco</span></li>
+
+<!-- Order form embed (same content as contact.html, kept inline on the Contacts section) -->
+<div style="margin-top:20px; background:rgba(255,247,240,0.92); border:1px solid rgba(0,0,0,0.08); border-radius:16px; padding:16px; box-shadow:0 10px 28px rgba(0,0,0,0.08);">
+  <h2 style="margin:0 0 10px; font-size:1.4rem; color:#111;">Order / Contact Us</h2>
+  <p style="margin:0 0 14px; font-size:13px; opacity:0.85;">
+    Send your order or enquiry. (Demo form validation only.)
+  </p>
+
+  <form id="contactInlineForm" novalidate>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <div style="flex:1; min-width:220px;">
+        <label for="inlineName" style="display:block; font-weight:800; margin:8px 0 6px;">Full name</label>
+        <input id="inlineName" name="name" type="text" autocomplete="name" required style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff;" />
+      </div>
+      <div style="flex:1; min-width:220px;">
+        <label for="inlinePhone" style="display:block; font-weight:800; margin:8px 0 6px;">Phone/WhatsApp</label>
+        <input id="inlinePhone" name="phone" type="tel" autocomplete="tel" required style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff;" />
+      </div>
+    </div>
+
+    <label for="inlineTopic" style="display:block; font-weight:800; margin:12px 0 6px;">Topic</label>
+    <select id="inlineTopic" name="topic" required style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff;">
+      <option value="orders">Orders</option>
+      <option value="catering">Catering / Bulk</option>
+      <option value="support">Support</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="inlineEmail" style="display:block; font-weight:800; margin:12px 0 6px;">Email (optional)</label>
+    <input id="inlineEmail" name="email" type="email" autocomplete="email" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff;" />
+
+    <label for="inlineMessage" style="display:block; font-weight:800; margin:12px 0 6px;">Message</label>
+    <textarea id="inlineMessage" name="message" required placeholder="Write your order details, address, date/time, or any enquiry..." style="width:100%; min-height:110px; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff; resize:vertical;"></textarea>
+
+    <div style="display:flex; gap:12px; margin-top:14px; align-items:center; flex-wrap:wrap;">
+      <button type="submit" style="padding:10px 14px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#111; color:#fff; cursor:pointer; font-weight:900;">Submit</button>
+      <button type="button" id="inlineFillDemo" style="padding:10px 14px; border-radius:12px; border:1px solid rgba(0,0,0,0.15); background:#fff; color:#111; cursor:pointer; font-weight:900;">Fill demo</button>
+      <span id="inlineContactStatus" style="flex:1; min-width:220px; display:none; font-weight:800; background:rgba(0,0,0,0.05); padding:10px 12px; border-radius:12px;" aria-live="polite"></span>
+    </div>
+  </form>
+</div>
 
 
+  </div></div>
 
+
+<!-- Promo + Back to top (JS enhanced) -->
+<div id="promo" style="position:fixed; left:12px; bottom:18px; z-index:1000; background:rgba(255,255,255,0.92); border:1px solid rgba(0,0,0,0.1); border-radius:14px; padding:10px 12px; max-width:520px; box-shadow:0 10px 28px rgba(0,0,0,0.12); font-family:Arial, Helvetica, sans-serif;">
+  <div style="font-weight:900; color:#111; margin-bottom:6px;">Daily Deal</div>
+  <div style="font-weight:800;">
+    <span data-promo-message>15% off for first 10 customers daily!</span>
+    <span data-promo-message style="display:none;">Order today and enjoy fast, home-styled meals.</span>
+  </div>
+  <div style="margin-top:8px; display:flex; gap:10px; align-items:center;">
+    <a class="contact-link" href="tel:0711827138" style="white-space:nowrap;">Call/WhatsApp to order</a>
+    <button type="button" data-action="dismiss" style="margin-left:auto; padding:6px 10px; border-radius:10px; border:1px solid rgba(0,0,0,0.15); background:#fff; cursor:pointer; font-weight:900;">Dismiss</button>
+  </div>
+</div>
+
+<button id="backToTop" type="button" aria-label="Back to top" style="position:fixed; right:18px; bottom:18px; z-index:1000; opacity:0; pointer-events:none; transition:opacity 200ms ease; padding:10px 14px; border-radius:999px; border:1px solid rgba(0,0,0,0.15); background:#111; color:#fff; cursor:pointer; font-weight:900;">↑ Top</button>
+
+<script src="script.js"></script>
+</body>
+</html>
 

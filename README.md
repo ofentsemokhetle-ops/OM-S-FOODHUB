@@ -35,3 +35,10 @@ Food pics are in the repo – check out the traditional setup, modern plates, dr
 
 Need food? We've got you!
 
+---
+
+- Added JavaScript interactions to the website: smooth scrolling navigation, active section highlighting, copy-to-clipboard buttons (phone/email), promo message cycle + dismiss (with localStorage), and a back-to-top button.
+- Updated `index.html` contacts area with “Copy” buttons for phone and email.
+- Added an inline order/contact demo form inside the Contacts section (handled by `script.js`).
+
+

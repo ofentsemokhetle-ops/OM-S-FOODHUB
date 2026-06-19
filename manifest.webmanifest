@@ -1,0 +1,10 @@
+{
+  "name": "OM's FOODHub",
+  "short_name": "FOODHub",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff7f0",
+  "theme_color": "#ff6b6b",
+  "icons": []
+}
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - OM`s FOODHub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{ --panel: rgba(255,247,240,0.92); }
+    body{
+      margin: 0;
+      padding: 0 12px 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color:#111;
+      background:#fff7f0;
+    }
+    .container{ max-width: 980px; margin: 0 auto; padding-top: 28px; }
+    header{ padding: 14px 0 8px; }
+    h1{ margin: 0 0 8px; }
+    .card{
+      background: var(--panel);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+      padding: 18px;
+    }
+    label{ display:block; font-weight:800; margin: 10px 0 6px; }
+    input, textarea, select{
+      width:100%;
+      box-sizing:border-box;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.15);
+      outline:none;
+      background:#fff;
+      font-size: 14px;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .row{ display:flex; gap: 12px; }
+    .row > *{ flex: 1; }
+    .actions{ display:flex; gap: 12px; margin-top: 14px; align-items:center; }
+    button{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.15);
+      background:#111;
+      color:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+    button.secondary{ background:#fff; color:#111; }
+    .status{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.05);
+      display:none;
+      font-weight:800;
+    }
+    .helper{ font-size: 13px; opacity: 0.85; margin-top: 6px; }
+    a{ color:#1a73e8; font-weight:800; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Contact OM`s FOODHub</h1>
+      <p class="helper">Send us your order or enquiry. This form is front-end only (demo) and will validate inputs.</p>
+      <p class="helper">Tip: You can still use the Phone/Email links on the main page for instant WhatsApp/Email.</p>
+    </header>
+
+    <div class="card">
+      <form id="contactForm" novalidate>
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="phone">Phone/WhatsApp</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+        </div>
+
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic" required>
+          <option value="orders">Orders</option>
+          <option value="catering">Catering / Bulk</option>
+          <option value="support">Support</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="email">Email (optional)</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Write your order details, address, date/time, or any enquiry..."></textarea>
+
+        <div class="actions">
+          <button type="submit">Submit</button>
+          <button type="button" class="secondary" id="fillDemo">Fill demo</button>
+        </div>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </form>
+
+      <p class="helper" style="margin-top:14px;">
+        Back to main page: <a href="index.html">OM`s FOODHub</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('status');
+      const fillDemo = document.getElementById('fillDemo');
+
+      const show = (msg, ok=true) => {
+        status.style.display = 'block';
+        status.textContent = msg;
+        status.style.background = ok ? 'rgba(0,160,90,0.12)' : 'rgba(200,0,0,0.10)';
+      };
+
+      const validate = () => {
+        const name = form.name.value.trim();
+        const phone = form.phone.value.trim();
+        const topic = form.topic.value;
+        const message = form.message.value.trim();
+        const email = (form.email.value || '').trim();
+
+        if (!name) return 'Please enter your full name.';
+        if (!phone) return 'Please enter your phone/WhatsApp number.';
+        if (phone.replace(/\D/g,'').length < 8) return 'Phone number looks too short.';
+        if (!topic) return 'Please choose a topic.';
+        if (!message) return 'Please write a message.';
+
+        if (email) {
+          const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          if (!emailOk) return 'Email address is not valid.';
+        }
+        return null;
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const err = validate();
+        if (err) return show(err, false);
+
+        // Front-end only: simulate submit
+        const payload = {
+          name: form.name.value.trim(),
+          phone: form.phone.value.trim(),
+          email: (form.email.value || '').trim(),
+          topic: form.topic.value,
+          message: form.message.value.trim(),
+        };
+
+        try { console.log('Contact form payload (demo):', payload); } catch {}
+
+        show('Thanks! Your message has been prepared (demo). We will contact you shortly.');
+        form.reset();
+      });
+
+      fillDemo.addEventListener('click', () => {
+        form.name.value = 'John Doe';
+        form.phone.value = '0711827138';
+        form.topic.value = 'catering';
+        form.email.value = 'john@example.com';
+        form.message.value = 'Hi! I would like catering for 20 people on Saturday. Please share pricing and availability.';
+        show('Demo details filled. Click Submit.', true);
+      });
+    })();
+  </script>
+</body>
+</html>
+
